@@ -37,7 +37,7 @@ int main() {
      
     //  cout<<endl;
     
-    display(root);
+    preetyDisplay(root,0); 
   
 }
 
@@ -98,10 +98,26 @@ void postOrder(Node* node){
     postOrder(node->right);
     cout<<node->val<<" ";
 }
-void display(Node* node,string indent=""){
+void display(Node* node,string indent){
     if(node==nullptr)return;
     cout<<indent<<node->val<<endl;
     display(node->left,indent+"\t");
     display(node->right,indent+"\t");
 }
+void preetyDisplay(Node* node,int level){
+     if (!node) return;
 
+    preetyDisplay(node->right, level + 1);
+
+    if (level != 0) {
+        for (int i = 0; i < level - 1; i++) {
+            cout << "|\t\t";
+        }
+        cout << "|------->" << node->val << endl;
+    } else {
+        cout << node->val << endl;
+    }
+
+    preetyDisplay(node->left, level + 1);
+    
+}
