@@ -37,6 +37,42 @@ void display(Node* node,string details){
     
 }
 
+void insert(){
+    
+}
+
+Node* insert(int value,Node node){
+    
+    if(node==nullptr){
+        node=new Node(value);
+        return node;
+    }
+    
+    if(value<node->val){
+        node->left=insert(value,node->left);
+    }
+    if(value>node->val){
+        node->right=insert(value,node->right);
+    }
+    
+    node.height=max(height(node->left),height(node->right))+1;
+    return node;
+}
+
+bool isbalanced(){
+    return balanced(root);
+}
+
+bool balanced(Node* node){
+    if(node==nullptr)return true;
+    
+    int lh=height(node->left);
+    int rh=height(node->right);
+    
+    return abs(lh-rh)<=1 && balanced(node->left) && balanced(node->right);
+}
+
+
 int main() {
      
      cout<<"Enter the root Node:";
@@ -46,4 +82,3 @@ int main() {
      root=new Node(rootval);
     
 }
-
